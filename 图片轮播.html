@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片轮播</title>
+    <style>
+        #scroll{
+            width: 300px;
+            height: 500px;
+            margin: 50px auto;
+            border: 1px solid black;
+            /*background-color: black;*/
+        }
+    </style>
+</head>
+<body>
+<div id="scroll"></div>
+<script>
+    !(function () {
+        var scroll = document.getElementById('scroll');
+        var newImg = new Image();
+        var oldImg = new Image();
+
+        scroll.appendChild(newImg);
+        scroll.appendChild(oldImg);
+
+        scroll.style.position = 'relative';
+
+        newImg.style.width = scroll.scrollWidth + 'px';
+        newImg.style.height = scroll.scrollHeight + 'px';
+        newImg.style.position = 'absolute';
+        newImg.style.left = '0px';
+        newImg.style.top = '0px';
+        // newImg.style.zIndex = '1';
+
+        oldImg.style.width = scroll.scrollWidth + 'px';
+        oldImg.style.height = scroll.scrollHeight + 'px';
+        oldImg.style.position = 'absolute';
+        oldImg.style.left = '0px';
+        oldImg.style.top = '0px';
+        // oldImg.style.zIndex = '2';
+
+        var arrImg = [
+            '../../image/yan1.jpg',
+            '../../image/yan2.jpg',
+            '../../image/yan3.jpg',
+            '../../image/yan4.jpg',
+            '../../image/wenhao.jpg',
+            '../../image/xiongmaotou.png',
+
+        ];
+        var index = 0;
+        var n;
+
+        aa();
+        function aa() {
+            oldImg.src = arrImg[index];
+            index = ++index%arrImg.length;
+            newImg.src = arrImg[index];
+
+            n = 1;
+            oldImg.style.opacity = n;
+
+            setTimeout(bb,3000)
+        }
+        function bb() {
+            if(n>0){
+                n -= 0.02;
+                oldImg.style.opacity = n;
+                setTimeout(bb,13)
+            }else{
+                aa()
+            }
+        }
+
+
+
+    })();
+</script>
+</body>
+</html>
